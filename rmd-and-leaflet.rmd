@@ -1,24 +1,19 @@
 ---
 title: "R Markdown and Leaflet"
 author: "Peng"
-date: "December 25, 2017"
+date: "December 24, 2017"
 output: html_document
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 #Introduction
 Leaflet is one of the most popular Javascript libraries for creating interactive maps. The leaflet R package allows you to create your own leaflet maps without needing to know any Javascript. You need to install the leaflet package in R using `install.packages("leaflet")`.
 
-This report features an interactive map that displaying the top 5 wildfires in southern California and their causes.
+This report features an interactive map that displaying the locations of the top 5 wildfires in southern California and their causes.
 
-```{r, eval=FALSE}
+```{r, echo=FALSE}
 library(leaflet)
 
-m_fires %>%
-  leaflet() %>%
+m_fires <- leaflet() %>%
   addTiles() %>%
   addCircleMarkers(lat=34.407365, lng=-119.081787 , 
                         popup="Thomas", color = "green")%>%
@@ -31,4 +26,5 @@ m_fires %>%
   addCircleMarkers(lat=33.0797, lng=-116.6861 , 
                         popup="Witch", color = "red")%>%
   addLegend(labels = c("Natrual","Human","Under Investigation"), colors = c("blue", "red", "green"))
+m_fires
 ```
