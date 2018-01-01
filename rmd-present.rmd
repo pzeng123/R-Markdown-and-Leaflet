@@ -1,0 +1,58 @@
+---
+title: "R Markdown Presentation & Plotly"
+author: "Peng"
+date: "December 31, 2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Datasets: mtcars
+
+Motor Trend Car Road Tests(mtcars): The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973-74 models).
+
+
+No.| Variable | Description
+---|----------|----------------------
+1. |mpg      | Miles/(US) gallon
+2. |cyl	     | Number of cylinders
+3. |hp	     | Gross horsepower
+5. |wt	     | Weight (1000 lbs)
+6. |am	     | Transmission (0 = automatic, 1 = manual)
+
+## Datset Summary
+
+```{r cars, echo = TRUE}
+summary(mtcars[,c('mpg', 'cyl', 'hp', 'wt')])
+```
+
+## Boxplot
+
+```{r, warning=FALSE, message=FALSE}
+library(plotly)
+
+mtcars$am[mtcars$am==0] <- 'Auto'
+mtcars$am[mtcars$am==1] <- 'Manual'
+
+plot_ly(mtcars, y = ~mpg, type = "box", color = ~factor(am))
+```
+
+## Scatter Plot
+
+```{r, warning=FALSE, message=FALSE}
+library(plotly)
+
+mtcars$am[mtcars$am==0] <- 'Auto'
+mtcars$am[mtcars$am==1] <- 'Manual'
+
+plot_ly(
+    mtcars, x = ~wt, y = ~mpg, type = "scatter", 
+    color = ~factor(am), size = ~hp
+)
+```
+
+
+
+## Thank you!
